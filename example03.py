@@ -4,7 +4,7 @@ import socket
 import sys
 
 HOST = ''  # Symbolic name meaning all available interfaces
-PORT = 8888  # Arbitrary non-privileged port
+PORT = 5000  # Arbitrary non-privileged port
 
 # create an AF_INET, STREAM socket (TCP)
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -32,11 +32,12 @@ while 1:
     print('Connected with ' + addr[0] + ':' + str(addr[1]))
 
     data = conn.recv(1024)
-    reply = 'OK...' + data
+    reply = 'OK...' + data.decode('utf-8')
+    print(reply)
     if not data:
         break
 
-    conn.sendall(reply)
+    conn.sendall(reply.encode())
 
 conn.close()
 s.close()
