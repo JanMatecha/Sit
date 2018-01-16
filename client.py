@@ -22,7 +22,8 @@ try:
     #print >> sys.stderr, 'sending "%s"' % message
     print('sending "%s"' % message, file=sys.stderr)
 
-    sock.sendall(message)
+
+    sock.sendall(message.encode())
 
     # Look for the response
     amount_received = 0
@@ -32,7 +33,7 @@ try:
         data = sock.recv(16)
         amount_received += len(data)
         #print >> sys.stderr, 'received "%s"' % data
-        print('received "%s"' % data, file=sys.stderr)
+        print('received "%s"' % data.decode('utf-8'), file=sys.stderr)
 
 finally:
     #print >> sys.stderr, 'closing socket'

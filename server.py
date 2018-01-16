@@ -32,7 +32,7 @@ while True:
         while True:
             data = connection.recv(16)
             #print >> sys.stderr, 'received "%s"' % data
-            print('received "%s"' % data, file = sys.stderr)
+            print('received "%s"' % data.decode('utf-8'), file = sys.stderr)
             if data:
                 #print >> sys.stderr, 'sending data back to the client'
                 print('sending data back to the client', file = sys.stderr)
